@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+*.pyc
+__pycache__/
+
+# Environment variables
+.env
+.flaskenv
+
+# Token and sensitive data files
+access_token.txt
+refresh_token.txt
+authdata.json
+
+
+# PyCharm project files
+.idea/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*.so
+
+# Static files
+static/
+
+# Templates cache
+templates/
+
+# Store files
+store/
