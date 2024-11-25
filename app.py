@@ -5,15 +5,14 @@ from models import Lead, Contact  # Используем кастомные кл
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/create-lead": {"origins": "http://localhost:5173"}})
+CORS(app, resources={r"/create-lead": {"origins": "https://dompluse.com"}})
 
-# Устанавливаем менеджер токенов
 tokens.default_token_manager(
-    client_id="df712b12-041e-4922-9f5c-0856ec5f7739",
-    client_secret="mXmG993n4j4J0MImvLhLHU6TWM7Tct5r0iQVkAPrO3AvNxWlh6Ir20T9EqQYrSTk",
-    subdomain="tkskubidu",
-    redirect_url="https://test-amo-widget-server.loca.lt/auth",
-    storage=tokens.FileTokensStorage(),  # Токены хранятся в файле
+    client_id="156ab0a4-8bfa-4c09-a3a0-5b1e70df309c",
+    client_secret="9GszZ6BMU1XtNPHiep671tdAXikfGAmB7RQNPZ8Cwqhu8Re4h26toBmEoVq5DEWi",
+    subdomain="vbr07",
+    redirect_url="https://dompluse.com",
+    storage=tokens.FileTokensStorage(),  # by default FileTokensStorage
 )
 
 @app.route('/create-lead', methods=['POST'])

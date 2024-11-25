@@ -3,14 +3,6 @@ venv/
 *.pyc
 __pycache__/
 
-# Environment variables
-.env
-.flaskenv
-
-# Token and sensitive data files
-access_token.txt
-refresh_token.txt
-authdata.json
 
 
 # PyCharm project files
