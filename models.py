@@ -45,7 +45,7 @@ class Lead(_Lead):
     openstat_campaign = custom_field.BaseCustomField("openstat_campaign", field_id=285179, code="OPENSTAT_CAMPAIGN")
     openstat_ad = custom_field.BaseCustomField("openstat_ad", field_id=285181, code="OPENSTAT_AD")
     openstat_source = custom_field.BaseCustomField("openstat_source", field_id=285183, code="OPENSTAT_SOURCE")
-    from = custom_field.BaseCustomField("from", field_id=285185, code="FROM")
+    from_field = custom_field.BaseCustomField("from", field_id=285185, code="FROM")
     gclientid = custom_field.BaseCustomField("gclientid", field_id=285187, code="GCLIENTID")
     ym_uid = custom_field.BaseCustomField("_ym_uid", field_id=285189, code="_YM_UID")
     ym_counter = custom_field.BaseCustomField("_ym_counter", field_id=285191, code="_YM_COUNTER")
