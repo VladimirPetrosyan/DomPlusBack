@@ -11,7 +11,7 @@ tokens.default_token_manager(
     client_id="14c35dff-2124-407b-93c0-bd609f2f095b",
     client_secret="eCNZi5fvnV5F1EZhvOATck2ssfKFNFmaZpoOjCq9Aqh3gERRQrQmUmaI1klkaGL1",
     subdomain="vbr07",
-    redirect_url="https://dompluse.com",
+    redirect_url="https://dompluse.com/",
     storage=tokens.FileTokensStorage(),  # by default FileTokensStorage
 )
 
@@ -19,40 +19,49 @@ tokens.default_token_manager(
 @app.route('/create-lead', methods=['POST'])
 def create_lead():
     try:
-        # Получение данных из запроса
         data = request.json
         name = data.get('name')
         phone = data.get('phone')
         email = data.get('email')
-        services = data.get('services')  # Новое поле "Услуги"
+        services = data.get('services')
         svoi_dom = data.get('svoi_dom')
         project = data.get('project')
 
         if not phone:
             return jsonify({"status": "error", "details": "Не указаны обязательное поле: phone"}), 400
 
-        # Создание контакта
         contact = Contact(name=name)
         contact.telefon = phone
         contact.email = email
         contact.create()
 
-        # Проверка создания контакта
         if not contact.id:
             return jsonify({"status": "error", "details": "Контакт не был создан."}), 400
 
-        # Создание сделки
         lead = Lead(name=f"Сделка для {name}")
-        lead.uslugi = services  # Устанавливаем значение в кастомное поле "Услуги"
+        lead.pipeline_id = 8934494
+        lead.uslugi = services
         lead.svoi_dom = svoi_dom
         lead.proekty = project
+
+        # Очищаем пустые enum-поля
+        ENUM_FIELDS = [
+            "prichina_otkaza", "tekhnologiia", "etazhnost", "proekt", "uchastok",
+            "tip_oplaty", "period_stroitelstva", "fundament", "otdelka_vnutrenniaia",
+            "istochnik_sdelki", "teplota_klienta", "tip_sdelki", "transh_poluchen",
+            "pol_klienta", "kakaia_kvartira", "tsel", "sposob_oplaty", "sertifikaty"
+        ]
+        for field_name in ENUM_FIELDS:
+            if hasattr(lead, field_name):
+                value = getattr(lead, field_name)
+                if value in [None, "", []]:
+                    setattr(lead, field_name, None)
+
         lead.create()
 
-        # Проверка создания сделки
         if not lead.id:
             return jsonify({"status": "error", "details": "Сделка не была создана."}), 400
 
-        # Привязка контакта к сделке
         lead = Lead.objects.get(object_id=lead.id)
         lead.contacts.append(contact)
         lead.save()
