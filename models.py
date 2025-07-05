@@ -6,8 +6,8 @@ from amocrm.v2 import tokens, custom_field
 
 
 tokens.default_token_manager(
-    client_secret="U1ROdUISrn1zxva95gZNHVFTqyvo9AB4PqsbMqQAsaTb6QvvHBjFNvtGLI5Zwh9T",
-    client_id="c01ffeea-9bbd-4efe-83fd-ae25ae3335c9",
+    client_secret="zOhTj6XoslAyImr6FXCD2FdU6Z4XsdVyMApa6wfFWesEvkhqSeCWcuV1sYkvFZJ8",
+    client_id="f639cd4f-10fb-45d4-85e8-69287eb8ce60",
     subdomain="vbr07",
     redirect_url="https://dompluse.com/",
     storage=tokens.FileTokensStorage(directory_path="D:\job\DomPlusBack"),
@@ -45,7 +45,7 @@ class Lead(_Lead):
     openstat_campaign = custom_field.BaseCustomField("openstat_campaign", field_id=285179, code="OPENSTAT_CAMPAIGN")
     openstat_ad = custom_field.BaseCustomField("openstat_ad", field_id=285181, code="OPENSTAT_AD")
     openstat_source = custom_field.BaseCustomField("openstat_source", field_id=285183, code="OPENSTAT_SOURCE")
-    from_field = custom_field.BaseCustomField("from", field_id=285185, code="FROM")
+    from = custom_field.BaseCustomField("from", field_id=285185, code="FROM")
     gclientid = custom_field.BaseCustomField("gclientid", field_id=285187, code="GCLIENTID")
     ym_uid = custom_field.BaseCustomField("_ym_uid", field_id=285189, code="_YM_UID")
     ym_counter = custom_field.BaseCustomField("_ym_counter", field_id=285191, code="_YM_COUNTER")
